@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="root">
+    <h2>Transaction Registration Form</h2>
+    <form id="myForm">
+        <div class="form-group">
+            <label for="bankName">Bank Name</label>
+            <input type="text" id="bankName" name="bankName" value="Bank of Guam" required>
+        </div>
+
+        <div class="form-group">
+            <label for="accountFrom">Account Number (From)</label>
+            <input type="text" id="accountFrom" name="accountFrom" value="2121322121" maxlength="10" required>
+        </div>
+
+        <div class="form-group">
+            <label for="accountTo">Account Number (To - Treasury)</label>
+            <input type="text" id="accountTo" name="accountTo" value="2121322122" maxlength="10" required>
+        </div>
+
+        <div class="form-group">
+            <label for="tin">Taxpayer Identification Number (TIN)</label>
+            <input type="text" id="tin" name="tin" value="30000731" required>
+        </div>
+
+        <div class="form-group">
+            <label for="dateCredited">Date Credited to Treasury</label>
+            <input type="date" id="dateCredited" name="dateCredited" value="2025-06-12" required>
+        </div>
+
+        <div class="form-group">
+            <label for="amount">Amount of Payment</label>
+            <input type="number" step="0.01" id="amount" name="amount" value="334.75" required>
+        </div>
+
+        <div class="form-group">
+            <label for="currency">Currency</label>
+            <select id="currency" name="currency" required>
+                <option value="USD" selected>USD</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="transactionId">Transaction ID (Bank Reference Number)</label>
+            <input type="text" id="transactionId" name="transactionId" value="000001" required>
+        </div>
+
+        <div class="form-group">
+            <label for="year">Year</label>
+            <input type="text" id="year" name="year" value="2021" aria-invalid="true" minlength="4" maxlength="4" required>
+        </div>
+
+        <div class="form-group">
+            <label for="taxType">Tax Type</label>
+            <select id="taxType" name="taxType" required>
+                <option value="02" selected>GRT (Gross Revenue Tax)</option>
+                <option value="03">W&ST (Wages and Salaries Tax)</option>
+                <option value="01">PIT (Personal Income Tax)</option>
+                <option value="04">CIT (Corporate Income Tax)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="period">Period</label>
+            <select id="period" name="period" required>
+
+            </select>
+        </div>
+
+        <button type="submit" id="create">Submit</button>
+    </form>
+</div>
+
+
+<script src="./script.js"></script>
+</body>
+</html>
