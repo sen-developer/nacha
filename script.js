@@ -1,5 +1,5 @@
 let content =
-`101TANTANTANTANNNNNNNNA23011300000094101Bank Of Guam           Eank Of Guam                   
+    `101TANTANTANTANNNNNNNNA23011300000094101Bank Of Guam           Eank Of Guam                   
 5200Bob's Manufactur                    881234567 PPDBILL            MYDATE   1026009590000001
 62792600959311               PAYMENTAMOrb1            Rob Burton              0026009590000001
 711|YEAR|TT|PE|                                                           Some data end0000000
@@ -15,6 +15,10 @@ let content =
 
 const form = document.getElementById('myForm');
 
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+
+const paramsObject = Object.fromEntries(urlParams.entries());
 
 const a = document.createElement("a");
 const create = document.getElementById("create");
@@ -26,18 +30,24 @@ addPeriods(periodSelector);
 a.innerText = "Download";
 a.download = "nacha.txt";
 
-
-
-
 create.addEventListener("click", (e) => {
     e.preventDefault();
-    replaceContent(content, a, form);
+    replaceContent(content, a, paramsObject);
 });
-
-
 
 body.append(a);
 
+if(paramsObject?.tin && paramsObject?.accountFrom && paramsObject?.accountTo){
+    const newTab = window.open("https://example.com");
+    document.body.style.display = "none";
+    create.click();
+    new Promise(resolve => setTimeout(resolve, 1000))
+        .then(()=> {
+            newTab.close();
+            window.history.back();
+        });
+
+}
 
 function getDataFromForm(){
     let tmp = {};
@@ -68,11 +78,11 @@ function setParams(param){
 
 function replaceContent(content, a){
 
-    const data = getDataFromForm();
+    const data = paramsObject ? setParams(paramsObject) : getDataFromForm();
 
     let tmpContent = content;
 
-    if(data?.accountFrom?.length === 10 && data?.accountFrom?.length === 10){
+    if(data?.accountFrom?.length === 10 && data?.accountTo?.length === 10){
         tmpContent = tmpContent.replace("ANNNNNNNNA", data.accountFrom);
         tmpContent = tmpContent.replace("TANTANTANT", data.accountTo);
     }
@@ -251,4 +261,21 @@ function addPeriods(element){
         element.appendChild(option);
     });
 
+}
+
+function getUrlParams(urlParams ){
+    const paramsMultiValue = {};
+    for (const [key, value] of urlParams.entries()) {
+        if (paramsMultiValue.hasOwnProperty(key)) {
+            // If the key already exists, convert to an array or push to existing array
+            if (Array.isArray(paramsMultiValue[key])) {
+                paramsMultiValue[key].push(value);
+            } else {
+                paramsMultiValue[key] = [paramsMultiValue[key], value];
+            }
+        } else {
+            paramsMultiValue[key] = value;
+        }
+    }
+    return paramsMultiValue;
 }
