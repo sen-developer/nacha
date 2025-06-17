@@ -38,15 +38,12 @@ create.addEventListener("click", (e) => {
 body.append(a);
 
 if(paramsObject?.tin && paramsObject?.accountFrom && paramsObject?.accountTo){
-    const newTab = window.open("https://example.com");
     document.body.style.display = "none";
     create.click();
     new Promise(resolve => setTimeout(resolve, 1000))
         .then(()=> {
-            newTab.close();
             window.history.back();
         });
-
 }
 
 function getDataFromForm(){
@@ -261,21 +258,4 @@ function addPeriods(element){
         element.appendChild(option);
     });
 
-}
-
-function getUrlParams(urlParams ){
-    const paramsMultiValue = {};
-    for (const [key, value] of urlParams.entries()) {
-        if (paramsMultiValue.hasOwnProperty(key)) {
-            // If the key already exists, convert to an array or push to existing array
-            if (Array.isArray(paramsMultiValue[key])) {
-                paramsMultiValue[key].push(value);
-            } else {
-                paramsMultiValue[key] = [paramsMultiValue[key], value];
-            }
-        } else {
-            paramsMultiValue[key] = value;
-        }
-    }
-    return paramsMultiValue;
 }
