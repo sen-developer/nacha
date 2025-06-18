@@ -1,6 +1,6 @@
 let content =
     `101TANTANTANTANNNNNNNNA23011300000094101EMPTY-BANK             EMPTY-BANK                     
-5200Bob's Manufactur                    881234567 PPDBILL            MYDATE   1026009590000001
+5200                                    881234567 PPDBILL            MYDATE   1026009590000001
 62792600959311               PAYMENTAMOrb1            NAME                    0026009590000001
 711|YEAR|TT|PE|                                                           Some data end0000000
 822ADENDA50013004795000000018995000000018996TINTINT                           026009590000001
