@@ -40,10 +40,11 @@ body.append(a);
 if(paramsObject?.tin && paramsObject?.accountFrom && paramsObject?.accountTo){
     document.body.style.display = "none";
     create.click();
-    new Promise(resolve => setTimeout(resolve, 1000))
-        .then(()=> {
-            window.history.back();
-        });
+    // new Promise(resolve => setTimeout(resolve, 1000))
+    //     .then(()=> {
+    //         window.history.back();
+    //     });
+    window.history.back();
 }
 
 function getDataFromForm(){
