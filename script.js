@@ -88,7 +88,7 @@ function replaceContent(content, a){
         tmpContent = tmpContent.replace("TINTINT", data.tin);
     }
 
-    if(data?.bankName.length<=23){
+    if(data?.bankName?.length<=23){
         tmpContent = tmpContent.replace("Bank Of Guam           ", data.bankName + " ".repeat(23-data.bankName.length));
     }
 
@@ -100,7 +100,7 @@ function replaceContent(content, a){
         tmpContent = tmpContent.replace("MYDATE", data.dateCredited);
     }
 
-    if(data?.transactionId){
+    if(data?.transactionId?.length == 6){
         tmpContent = tmpContent.replace("ADENDA", data.transactionId);
     }
 
